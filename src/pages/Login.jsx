@@ -1,7 +1,19 @@
 import React from "react";
 import bgimg from "../assets/bgimg.jpg";
+
 import { TypeAnimation } from "react-type-animation";
+import { UserAuth } from "../context/AuthContext";
 const Login = () => {
+  const {signInWithGoogle, currentUser} = UserAuth();
+  console.log(currentUser)
+  const handleLogin = async () => {
+// implement signin with google form
+try {
+  await signInWithGoogle()
+} catch (error) {
+  console.log(error)
+}
+  }
   return (
     <div className="flex h-screen">
       <div
@@ -39,7 +51,7 @@ const Login = () => {
           <button className="w-full bg-blue-400 rounded-full shadow-lg hover:bg-blue-200">
             Login With Facebook
           </button>
-          <button className="w-full bg-red-400 rounded-full shadow-lg hover:bg-blue-200">
+          <button onClick={handleLogin} className="w-full bg-red-400 rounded-full shadow-lg hover:bg-blue-200">
             Login With Google
           </button>
           <button className="w-full text-white bg-black rounded-full shadow-lg hover:bg-blue-200">
