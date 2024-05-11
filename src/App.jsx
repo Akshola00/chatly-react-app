@@ -12,12 +12,17 @@ function App() {
       <AuthProvider>
         <NavBar />
         <Routes>
-          <Route path="/">
-
-          
           <Route path="/" element={<Login />} />
-          <Route path="/chat" element={< Privateroute component={< ChatScreen />} />} />
-          </Route>
+          {/* <Route path="/chat" element={<ChatScreen />} /> */}
+          
+          <Route
+            path="/chat"
+            element={
+              <Privateroute>
+                <ChatScreen />
+              </Privateroute>
+            }
+          />
         </Routes>
       </AuthProvider>
     </>

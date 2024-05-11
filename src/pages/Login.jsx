@@ -1,19 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import bgimg from "../assets/bgimg.jpg";
 
 import { TypeAnimation } from "react-type-animation";
 import { UserAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 const Login = () => {
-  const {signInWithGoogle, currentUser} = UserAuth();
-  console.log(currentUser)
+  const navigate = useNavigate();
+  const { signInWithGoogle, currentUser } = UserAuth();
+  console.log(currentUser);
   const handleLogin = async () => {
-// implement signin with google form
-try {
-  await signInWithGoogle()
-} catch (error) {
-  console.log(error)
-}
-  }
+    // implement signin with google form
+    try {
+      await signInWithGoogle();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    if (currentUser) {
+      navigate('chat/')
+    }
+  }, [currentUser])
+ 
   return (
     <div className="flex h-screen">
       <div
@@ -31,7 +39,7 @@ try {
               1000,
               "Meet Millions Arround the World",
               1000,
-              "Send Instant Messages To The Whola World",
+              "Send Instant Messages To The Whoe World",
               1000,
             ]}
             wrapper="span"
@@ -48,15 +56,18 @@ try {
             welcome back <span className="text-amber-400">buddy</span>
           </h2>
           <div className="space-y-4">
-          <button className="w-full bg-blue-400 rounded-full shadow-lg hover:bg-blue-200">
-            Login With Facebook
-          </button>
-          <button onClick={handleLogin} className="w-full bg-red-400 rounded-full shadow-lg hover:bg-blue-200">
-            Login With Google
-          </button>
-          <button className="w-full text-white bg-black rounded-full shadow-lg hover:bg-blue-200">
-            Login With Twitter
-          </button>
+            <button className="w-full bg-blue-400 rounded-full shadow-lg hover:bg-blue-200">
+              Login With Facebook
+            </button>
+            <button
+              onClick={handleLogin}
+              className="w-full bg-red-400 rounded-full shadow-lg hover:bg-blue-200"
+            >
+              Login With Google
+            </button>
+            <button className="w-full text-white bg-black rounded-full shadow-lg hover:bg-blue-200">
+              Login With Twitter
+            </button>
           </div>
         </div>
       </div>
