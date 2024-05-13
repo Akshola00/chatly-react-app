@@ -33,7 +33,7 @@ const Login = () => {
             className=" text-green-800 font-bold text-3xl"
             sequence={[
               // Same substring at the start will only be typed out once, initially
-              "We produce food for Mice",
+              "We are the best",
               1000, // wait 1s before replacing "Mice" with "Hamsters"
               "ChatLy By NIIT",
               1000,
